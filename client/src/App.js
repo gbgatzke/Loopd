@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router'
+import { useNavigate } from 'react-router';
+import NavBar from "./components/NavBar"
+import Login from "./components/Login"
+import NewUser from "./components/NewUser"
+import Home from './components/Home'
 
 function App() {
+
+  const [ currentUser, setCurrentUser ] = useState(null)
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    fetch('/logout', {
+      method: 'DELETE',
+    })
+    setCurrentUser(null)
+    navigate('/')
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <NavBar user={currentUser} handleLogout={handleLogout}/>
+      <Routes>
+        <Route path="/signup" element={<NewUser setCurrentUser={setCurrentUser}/>}/>
+        <Route path="/login" element={<Login setCurrentUser={setCurrentUser}/>}/>
+        <Route path="/" element={<Home user={currentUser}/>}/>
+      </Routes>
     </div>
   );
 }
