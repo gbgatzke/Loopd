@@ -6,18 +6,21 @@ function NavBar({ user, handleLogout }) {
         return(
             <div>
                 <NavLink to="/login">
-                    <button>Login</button>
+                    <button className='button'>Login</button>
                 </NavLink>
                 <NavLink to="/signup">
-                    <button>Sign Up</button>
+                    <button className='button'>Sign Up</button>
                 </NavLink>
             </div>
         )
     }
 
     return(
-        <div>
-            <button onClick={handleLogout}>Logout</button>
+        <div className='navbar'>
+            <button className='button' onClick={handleLogout}>Logout</button>
+            <NavLink to="/">
+                <button className='button'>Home</button>
+            </NavLink>
         </div>
     )
 }

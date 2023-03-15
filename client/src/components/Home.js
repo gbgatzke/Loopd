@@ -1,4 +1,5 @@
-
+import { Link } from 'react-router-dom'
+import Pad from './Pad'
 
 function Home({ user }) {
 
@@ -10,7 +11,15 @@ function Home({ user }) {
         )
     }
     return(
-        <h1>Welcome, {user.name}</h1>
+        <div>
+            <h1>Welcome, {user.name}!</h1>
+            <Link to="/pad">
+                <button className='button'>Make sounds!</button>
+            </Link>
+            <Link to="/sequencer">
+                <button className='button'>Make a pattern!</button>
+            </Link>
+        </div>
     )
 }
 
