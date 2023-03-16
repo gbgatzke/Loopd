@@ -6,7 +6,7 @@ import OpenHH from "../testaudio/hh_open-1.wav";
 import useSound from "use-sound";
 
 import Grid from "./Grid";
-import Toolbar from "./Toolbar";
+import Toolbar from "./Toolbar"
 
 function Sequencer({ currentUser }) {
   const steps = 16;
@@ -19,6 +19,7 @@ function Sequencer({ currentUser }) {
   const initialState = [kickArray, snareArray, closedhhArray, openhhArray];
 
   const [sequence, setSequence] = useState(initialState);
+  const [presets, setPresets] = useState([])
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [bpm, setBpm] = useState(120);
@@ -31,6 +32,14 @@ function Sequencer({ currentUser }) {
   const [hhopen] = useSound(OpenHH);
 
   const soundMap = [hhopen, hhclosed, snare, kick];
+
+  useEffect(() => {
+    fetch('/presets')
+    .then(r => r.json())
+    .then(pres => {
+      setPresets(pres)
+    })
+  },[])
 
   const toggleStep = (line, step) => {
     const sequenceCopy = [...sequence];
@@ -72,21 +81,23 @@ function Sequencer({ currentUser }) {
   const saveSequence = (name) => {
     const sequenceObj = {
       name: name,
-      sequence: sequence,
+      sequence: JSON.stringify(sequence),
       bpm: bpm,
       user_id: currentUser.id,
     };
 
-    console.log(sequenceObj.sequence);
-
-    console.log(sequenceObj);
+    console.log(sequenceObj)
     fetch("/sequences", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(sequenceObj),
     }).then((r) => {
       if (r.ok) {
-        r.json().then((sequence) => console.log(sequence));
+        r.json().then((sequence) => {
+          const newSequence = new Array(JSON.parse(sequence.sequence))
+          setSequence(newSequence)
+        }
+        );
       } else {
         r.json((errs) => console.log(errs));
       }
@@ -103,6 +114,8 @@ function Sequencer({ currentUser }) {
         setBpm={setBpm}
         setCurrentStep={setCurrentStep}
         saveSequence={saveSequence}
+        presets={presets}
+        setSequence={setSequence}
       />
       <Grid sequence={sequence} toggleStep={toggleStep}></Grid>
     </div>

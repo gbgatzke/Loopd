@@ -3,7 +3,7 @@ function BPM({ setBpm }) {
     setBpm(e.target.value);
   };
   return (
-    <div>
+    <div className="bpm">
       <label htmlFor="bpm">Bpm: </label>
       <input name="bpm" onChange={handleChange} type="number"></input>
     </div>

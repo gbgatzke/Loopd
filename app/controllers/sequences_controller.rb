@@ -14,6 +14,6 @@ class SequencesController < ApplicationController
     private
 
     def sequence_params
-        params.permit(:name, :bpm, :user_id, sequence: [])
+        params.permit(:name, :bpm, :sequence, :user_id)
     end
 end

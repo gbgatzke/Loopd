@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PlayButton from "./PlayButton";
 import BPM from "./BPM";
+import Presets from "./Presets";
 
 function Toolbar({
   isPlaying,
@@ -8,6 +9,8 @@ function Toolbar({
   setBpm,
   setCurrentStep,
   saveSequence,
+  presets,
+  setSequence
 }) {
   const [saveModeOn, setSaveMode] = useState(false);
   const [sequenceName, setSequenceName] = useState("");
@@ -34,7 +37,7 @@ function Toolbar({
     <div className="toolbar">
       <PlayButton isPlaying={isPlaying} onClick={handleClick} />
       <BPM setBpm={setBpm} />
-      <span>
+      <span className="save-button">
         <button className="button" onClick={handleSave}>
           {saveModeOn ? "Save it!" : "Save this sequence?"}
         </button>
@@ -46,6 +49,7 @@ function Toolbar({
           ></input>
         ) : null}
       </span>
+      <Presets presets={presets} setSequence={setSequence}/>
     </div>
   );
 }

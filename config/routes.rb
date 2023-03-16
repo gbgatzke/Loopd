@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :presets
   resources :sequences
   resources :users
 
