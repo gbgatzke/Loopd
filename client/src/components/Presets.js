@@ -1,23 +1,30 @@
+function Presets({ presets, setSequence, initialState, setBpm }) {
+  // console.log(presets)
 
-
-function Presets({ presets, setSequence }) {
-
-    console.log(presets)
-
-    const handlePreset = (e) => {
-        console.log(e.target.value)
+  const handlePreset = (e) => {
+    const presetSeq = presets.filter(
+      (preset) => preset.name === e.target.value
+    );
+    if (e.target.value === "default") {
+      setSequence(initialState);
+      setBpm(120);
     }
+    setSequence(JSON.parse(presetSeq[0].sequence));
+    setBpm(presetSeq[0].bpm);
+  };
 
-    const list = presets.map(preset =>
-        <option value={preset.name}>{preset.name}</option>
-    )
+  const list = presets.map((preset) => (
+    <option key={preset.id} value={preset.name}>{preset.name}</option>
+  ));
 
-    return(
-        <div>
-            <select onChange={handlePreset}>
-                {list}
-            </select>
-        </div>
-    )
+  return (
+    <div>
+      <label htmlFor="presets">Presets: </label>
+      <select name="presets" onChange={handlePreset}>
+        <option value="default">Default</option>
+        {list}
+      </select>
+    </div>
+  );
 }
-export default Presets
+export default Presets;

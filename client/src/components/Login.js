@@ -9,7 +9,7 @@ function Login({ setCurrentUser }) {
     password: "",
   });
 
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,8 +29,9 @@ function Login({ setCurrentUser }) {
           navigate("/");
         });
       } else {
-        r.json().then((errs) => {
-          setErrors(errs);
+        r.json().then((err) => {
+          setErrors(err);
+          console.log(errors.errors);
         });
       }
     });
@@ -58,7 +59,9 @@ function Login({ setCurrentUser }) {
         />
         <button type="submit">Login</button>
       </form>
-      {/* {errors ? errors.errors.map(err => <p className='error'>{err}</p>) : null} */}
+      {errors
+        ? errors.errors.map((err) => <p className="error">{err}</p>)
+        : null}
     </div>
   );
 }

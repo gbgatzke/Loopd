@@ -11,6 +11,11 @@ class SequencesController < ApplicationController
         render json: sequence, status: :created
     end
 
+    def user_sequences
+        user = User.find(params[:id])
+        render json: user.sequences, status: :ok
+    end
+
     private
 
     def sequence_params

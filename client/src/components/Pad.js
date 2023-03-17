@@ -11,21 +11,22 @@ function Pad() {
   const [hhclosed] = useSound(ClosedHH);
   const [hhopen] = useSound(OpenHH);
 
-  useEffect(() => {
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "f") {
-        kick();
-      } else if (e.key === "g") {
-        snare();
-      } else if (e.key === "h") {
-        hhclosed();
-      } else if (e.key === "j") {
-        hhopen();
-      } else {
-        return null;
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("keydown", (e) => {
+  //     console.log(e.key)
+  //     if (e.key === "f") {
+  //       kick();
+  //     } else if (e.key === "g") {
+  //       snare();
+  //     } else if (e.key === "h") {
+  //       hhclosed();
+  //     } else if (e.key === "j") {
+  //       hhopen();
+  //     } else {
+  //       return null
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div className="pad">
