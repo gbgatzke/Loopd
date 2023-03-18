@@ -16,20 +16,15 @@ function Toolbar({
   setSequence,
   initialState,
   currentUser,
+  userSeqs,
+  setUserSeqs,
+  deleteSequence,
 }) {
-  const [userSeqs, setUserSeqs] = useState([]);
+  // const [userSeqs, setUserSeqs] = useState([]);
   const [saveModeOn, setSaveMode] = useState(false);
   const [sequenceName, setSequenceName] = useState("");
 
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    fetch(`/usersequences/${currentUser.id}`)
-      .then((r) => r.json())
-      .then((seqs) => setUserSeqs(seqs));
-  }, []);
-
-  console.log(userSeqs)
+  const navigate = useNavigate();
 
   const handleStep = () => {
     if (isPlaying) {
@@ -59,18 +54,21 @@ function Toolbar({
         if (r.ok) {
           r.json().then((sequence) => {
             const newSequence = new Array(JSON.parse(sequence.sequence));
-            console.log(newSequence)
             setUserSeqs([...userSeqs, sequence]);
-            setSequence(newSequence);
-            navigate('/sequencer')
+            setSequenceName("");
           });
         } else {
           r.json((errs) => console.log(errs));
         }
       });
       setSaveMode(false);
+      navigate("/sequencer");
     }
   };
+
+  if (!currentUser) {
+    <h1>Loading...</h1>;
+  }
 
   return (
     <div className="toolbar">
@@ -99,6 +97,9 @@ function Toolbar({
           userSeqs={userSeqs}
           setUserSeqs={setUserSeqs}
           setSequence={setSequence}
+          setBpm={setBpm}
+          deleteSequence={deleteSequence}
+          initialState={initialState}
         />
       ) : null}
     </div>

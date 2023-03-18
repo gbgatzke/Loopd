@@ -8,7 +8,25 @@ import useSound from "use-sound";
 import Grid from "./Grid";
 import Toolbar from "./Toolbar";
 
-function Sequencer({ currentUser }) {
+function Sequencer({
+  currentUser,
+  setCurrentUser,
+  userSeqs,
+  setUserSeqs,
+  deleteSequence,
+}) {
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => {
+          setCurrentUser(user);
+          setUserSeqs(user.sequences);
+        });
+      } else {
+        r.json().then((errors) => console.log(errors));
+      }
+    });
+  }, []);
   const steps = 16;
   const initialCellState = { triggered: false, activated: false };
 
@@ -91,7 +109,11 @@ function Sequencer({ currentUser }) {
         setSequence={setSequence}
         initialState={initialState}
         currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
         sequence={sequence}
+        userSeqs={userSeqs}
+        setUserSeqs={setUserSeqs}
+        deleteSequence={deleteSequence}
       />
       <Grid sequence={sequence} toggleStep={toggleStep}></Grid>
     </div>

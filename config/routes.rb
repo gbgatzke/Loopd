@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :presets
-  resources :sequences
-  resources :users
+  resources :presets, only: [:index, :show]
+  resources :sequences, only: [:show, :create, :destroy, :user_sequences]
+  resources :users, only: [:show, :create, :destroy]
 
 
   get '/me', to: 'users#show'

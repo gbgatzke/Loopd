@@ -1,6 +1,4 @@
 function Presets({ presets, setSequence, initialState, setBpm }) {
-  // console.log(presets)
-
   const handlePreset = (e) => {
     const presetSeq = presets.filter(
       (preset) => preset.name === e.target.value
@@ -14,7 +12,9 @@ function Presets({ presets, setSequence, initialState, setBpm }) {
   };
 
   const list = presets.map((preset) => (
-    <option key={preset.id} value={preset.name}>{preset.name}</option>
+    <option key={preset.id} value={preset.name}>
+      {preset.name}
+    </option>
   ));
 
   return (

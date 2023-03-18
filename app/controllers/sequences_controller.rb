@@ -11,6 +11,12 @@ class SequencesController < ApplicationController
         render json: sequence, status: :created
     end
 
+    def destroy
+        sequence = Sequence.find(params[:id])
+        sequence.destroy
+        head :no_content
+    end
+
     def user_sequences
         user = User.find(params[:id])
         render json: user.sequences, status: :ok
