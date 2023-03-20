@@ -1,28 +1,43 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import EditName from "./EditName";
+import EditPassword from "./EditPassword";
 
-function Account({ currentUser }) {
-  const [editLive, setEditLive] = useState(false);
+function Account({ currentUser, updateUser, handleLogout }) {
+  const [editName, setEditName] = useState(false);
+  const [editPassword, setEditPassword] = useState(false);
 
-  if (!editLive) {
-    return (
-      <div>
-        <h1>Account!</h1>
-        <button onClick={() => setEditLive(!editLive)}>edit is falsery?</button>
-      </div>
-    );
-  }
+  const navigate = useNavigate();
+
+  const handleDelete = () => {
+    fetch(`users/${currentUser.id}`, {
+      method: "DELETE",
+    });
+    handleLogout();
+  };
+
   return (
     <div>
-        <h1>Edit Account!</h1>
-        <form>
-            <label htmlFor="name">Name: </label>
-            <input name="name" value={currentUser.name}/>
-            <label htmlFor="username">Username: </label>
-            <input name="username" value={currentUser.username}/>
-            <button>Save changes!</button>
-        </form>
+      <h1>Account!</h1>
+      {!editName ? (
+        <button onClick={() => setEditName(!editName)}>
+          Edit Name/username
+        </button>
+      ) : (
+        <EditName currentUser={currentUser} updateUser={updateUser} />
+      )}
+      {!editPassword ? (
+        <button onClick={() => setEditPassword(!editPassword)}>
+          Edit password
+        </button>
+      ) : (
+        <EditPassword currentUser={currentUser} updateUser={updateUser} />
+      )}
+      <button onClick={() => handleDelete()}>Delete account</button>
+      <button className="button" onClick={() => navigate("/")}>
+        Close
+      </button>
     </div>
-  
   );
 }
 

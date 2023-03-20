@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authorize
 
+  wrap_parameters format: []
   def index
     @users = User.all
   render json: @users
@@ -19,26 +20,23 @@ class UsersController < ApplicationController
     render json: user, status: :created
   end
 
-  def update_names(name_params)
-    user = User.find_by(id: session[:user_id])
-    user.update(name_params)
+  def update
+    user = User.find(params[:id])
+    user.update!(name_params)
     render json: user, status: :ok
   end
 
-  def update_password(password_params)
-    user = User.find_by(id: session[:user_id])
-    user.update(password_params)
+  def update_password
+    user = User.find(params[:id])
+    user.update!(password_params)
     render json: user, status: :ok
   end
 
   def destroy
     user = User.find_by(id: session[:user_id])
     user.destroy
+    session.delete :user_id
     head :no_content
-  end
-
-  def destroy
-    @user.destroy
   end
 
   private

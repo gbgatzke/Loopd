@@ -47,6 +47,11 @@ function App() {
     navigate("/sequencer");
   };
 
+  const updateUser = (updatedUser) => {
+    setCurrentUser(updatedUser);
+    navigate("/");
+  };
+
   return (
     <div>
       <div className="bar">
@@ -67,7 +72,13 @@ function App() {
         />
         <Route
           path="/account"
-          element={<Account currentUser={currentUser} />}
+          element={
+            <Account
+              currentUser={currentUser}
+              updateUser={updateUser}
+              handleLogout={handleLogout}
+            />
+          }
         />
         <Route
           path="/signup"
