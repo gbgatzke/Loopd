@@ -4,7 +4,7 @@ class CreatePresets < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :sequence
       t.integer :bpm
-      
+      t.string :kit
 
       t.timestamps
     end

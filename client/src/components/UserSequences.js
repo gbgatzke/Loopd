@@ -6,6 +6,7 @@ function UserSequences({
   setBpm,
   deleteSequence,
   initialState,
+  setCurrentKit
 }) {
   const [currentOption, setCurrentOption] = useState(false);
   const [currentSequence, setCurrentSequence] = useState(null);
@@ -20,12 +21,14 @@ function UserSequences({
       setSequence(initialState);
       setBpm(120);
       setCurrentOption(false)
+      setCurrentKit('soundMap1');
     } else {
       const selected = userSeqs.filter((seq) => seq.name === e.target.value);
-      console.log(selected);
+      console.log(selected)
       setCurrentSequence(selected);
       setSequence(JSON.parse(selected[0].sequence));
       setBpm(selected[0].bpm);
+      setCurrentKit(selected[0].kit)
       setCurrentOption(true)
     }
   };
@@ -37,7 +40,7 @@ function UserSequences({
   };
 
   return (
-    <div>
+    <div className='userseq-div'>
       <label htmlFor="user-seqs">My sequences: </label>
       <select name="user-seqs" onChange={handleChange}>
         <option value="default">Default</option>

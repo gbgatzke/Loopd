@@ -8,6 +8,7 @@ class SequencesController < ApplicationController
 
     def create
         sequence = Sequence.create!(sequence_params)
+        puts sequence
         render json: sequence, status: :created
     end
 
@@ -25,6 +26,6 @@ class SequencesController < ApplicationController
     private
 
     def sequence_params
-        params.permit(:name, :bpm, :sequence, :user_id)
+        params.permit(:name, :bpm, :sequence, :kit, :user_id)
     end
 end

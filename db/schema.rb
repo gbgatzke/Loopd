@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_220100) do
     t.string "name"
     t.string "sequence"
     t.integer "bpm"
+    t.string "kit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -26,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_220100) do
     t.string "name"
     t.string "sequence"
     t.integer "bpm"
+    t.string "kit"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

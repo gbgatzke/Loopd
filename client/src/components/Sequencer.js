@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import Kick from "../testaudio/kick.wav";
-import Snare from "../testaudio/snare.wav";
-import ClosedHH from "../testaudio/hh_closed.wav";
-import OpenHH from "../testaudio/hh_open-1.wav";
+// import Kick from "../testaudio/kick.wav";
+// import Snare from "../testaudio/snare.wav";
+// import ClosedHH from "../testaudio/hh_closed.wav";
+// import OpenHH from "../testaudio/hh_open-1.wav";
+import Drums from "../testaudio/Drums";
 import useSound from "use-sound";
 
 import Grid from "./Grid";
@@ -44,12 +45,17 @@ function Sequencer({
 
   const timeoutInterval = 250 / (bpm / 60);
 
-  const [kick] = useSound(Kick);
-  const [snare] = useSound(Snare);
-  const [hhclosed] = useSound(ClosedHH);
-  const [hhopen] = useSound(OpenHH);
+  const [kick1] = useSound(Drums.Kit1.kick);
+  const [snare1] = useSound(Drums.Kit1.snare);
+  const [hhclosed1] = useSound(Drums.Kit1.hhclosed);
+  const [hhopen1] = useSound(Drums.Kit1.hhopen);
 
-  const soundMap = [hhopen, hhclosed, snare, kick];
+  const [kick2] = useSound(Drums.Kit2.kick);
+  const [snare2] = useSound(Drums.Kit2.snare);
+  const [hhclosed2] = useSound(Drums.Kit2.hhclosed);
+  const [hhopen2] = useSound(Drums.Kit2.hhopen);
+
+  const [currentKit, setCurrentKit] = useState("soundMap1");
 
   useEffect(() => {
     fetch("/presets")
@@ -67,8 +73,15 @@ function Sequencer({
   };
 
   const triggerSample = (i) => {
-    const sample = soundMap[i];
-    sample();
+    if (currentKit === "soundMap1") {
+      const soundMap1 = [hhopen1, hhclosed1, snare1, kick1];
+      const sample = soundMap1[i];
+      sample();
+    } else if (currentKit === "soundMap2") {
+      const soundMap2 = [hhopen2, hhclosed2, snare2, kick2];
+      const sample = soundMap2[i];
+      sample();
+    }
   };
 
   const nextStep = (time) => {
@@ -114,6 +127,8 @@ function Sequencer({
         userSeqs={userSeqs}
         setUserSeqs={setUserSeqs}
         deleteSequence={deleteSequence}
+        setCurrentKit={setCurrentKit}
+        currentKit={currentKit}
       />
       <Grid sequence={sequence} toggleStep={toggleStep}></Grid>
     </div>

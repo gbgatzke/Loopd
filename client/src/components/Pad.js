@@ -1,15 +1,18 @@
-import Kick from "../testaudio/kick.wav";
-import Snare from "../testaudio/snare.wav";
-import ClosedHH from "../testaudio/hh_closed.wav";
-import OpenHH from "../testaudio/hh_open-1.wav";
-import useSound from "use-sound";
-import { useEffect } from "react";
+// import Kick from "../testaudio/kick.wav";
+// import Snare from "../testaudio/snare.wav";
+// import ClosedHH from "../testaudio/hh_closed.wav";
+// import OpenHH from "../testaudio/hh_open-1.wav";
+// import Drums from '../testaudio/Drums'
+// import useSound from "use-sound";
+// import { useEffect } from "react";
 
 function Pad() {
-  const [kick] = useSound(Kick);
-  const [snare] = useSound(Snare);
-  const [hhclosed] = useSound(ClosedHH);
-  const [hhopen] = useSound(OpenHH);
+  // const [kick] = useSound(Kit1.kick);
+  // const [snare] = useSound(Kit1.snare);
+  // const [hhclosed] = useSound(Kit1.hhclosed);
+  // const [hhopen] = useSound(Kit1.hhopen);
+
+  // console.log(Kit1)
 
   // useEffect(() => {
   //   document.addEventListener("keydown", (e) => {
@@ -30,7 +33,7 @@ function Pad() {
 
   return (
     <div className="pad">
-      <button className="pad-button" onClick={kick}>
+      {/* <button className="pad-button" onClick={kick}>
         Kick
       </button>
       <button className="pad-button" onClick={snare}>
@@ -41,7 +44,7 @@ function Pad() {
       </button>
       <button className="pad-button" onClick={hhopen}>
         ClosedHat
-      </button>
+      </button> */}
     </div>
   );
 }

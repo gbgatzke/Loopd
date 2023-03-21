@@ -4,6 +4,7 @@ import PlayButton from "./PlayButton";
 import BPM from "./BPM";
 import Presets from "./Presets";
 import UserSequences from "./UserSequences";
+import SelectKit from "./SelectKit";
 
 function Toolbar({
   isPlaying,
@@ -19,8 +20,9 @@ function Toolbar({
   userSeqs,
   setUserSeqs,
   deleteSequence,
+  setCurrentKit,
+  currentKit,
 }) {
-  // const [userSeqs, setUserSeqs] = useState([]);
   const [saveModeOn, setSaveMode] = useState(false);
   const [sequenceName, setSequenceName] = useState("");
 
@@ -44,6 +46,7 @@ function Toolbar({
         name: sequenceName,
         sequence: JSON.stringify(sequence),
         bpm: bpm,
+        kit: currentKit,
         user_id: currentUser.id,
       };
       fetch("/sequences", {
@@ -53,7 +56,6 @@ function Toolbar({
       }).then((r) => {
         if (r.ok) {
           r.json().then((sequence) => {
-            const newSequence = new Array(JSON.parse(sequence.sequence));
             setUserSeqs([...userSeqs, sequence]);
             setSequenceName("");
           });
@@ -72,36 +74,44 @@ function Toolbar({
 
   return (
     <div className="toolbar">
-      <PlayButton isPlaying={isPlaying} onClick={handleClick} />
-      <BPM bpm={bpm} setBpm={setBpm} />
-      <span className="save-button">
-        <button className="button" onClick={handleSave}>
-          {saveModeOn ? "Save it!" : "Save this sequence?"}
-        </button>
-        {saveModeOn ? (
-          <input
-            onChange={(e) => setSequenceName(e.target.value)}
-            type="text"
-            placeholder="Name your sequence"
-          ></input>
-        ) : null}
-      </span>
-      <Presets
-        presets={presets}
-        setSequence={setSequence}
-        setBpm={setBpm}
-        initialState={initialState}
-      />
-      {userSeqs ? (
-        <UserSequences
-          userSeqs={userSeqs}
-          setUserSeqs={setUserSeqs}
+      <div className="toolbar-top">
+        <PlayButton isPlaying={isPlaying} onClick={handleClick} />
+        <BPM bpm={bpm} setBpm={setBpm} />
+        <span className="save-button">
+          <button className="button" onClick={handleSave}>
+            {saveModeOn ? "Save it!" : "Save this sequence?"}
+          </button>
+          {saveModeOn ? (
+            <input
+              onChange={(e) => setSequenceName(e.target.value)}
+              type="text"
+              placeholder="Name your sequence"
+            ></input>
+          ) : null}
+        </span>
+      </div>
+
+      <div className="toolbar-bottom">
+        <Presets
+          presets={presets}
           setSequence={setSequence}
           setBpm={setBpm}
-          deleteSequence={deleteSequence}
           initialState={initialState}
+          setCurrentKit={setCurrentKit}
         />
-      ) : null}
+        {userSeqs ? (
+          <UserSequences
+            userSeqs={userSeqs}
+            setUserSeqs={setUserSeqs}
+            setSequence={setSequence}
+            setBpm={setBpm}
+            deleteSequence={deleteSequence}
+            initialState={initialState}
+            setCurrentKit={setCurrentKit}
+          />
+        ) : null}
+        <SelectKit setCurrentKit={setCurrentKit} />
+      </div>
     </div>
   );
 }
