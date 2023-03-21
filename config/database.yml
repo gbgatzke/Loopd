@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: Loopd_production
-  username: Loopd
-  password: <%= ENV["LOOPD_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
