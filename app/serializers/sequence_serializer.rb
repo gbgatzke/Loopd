@@ -1,4 +1,3 @@
 class SequenceSerializer < ActiveModel::Serializer
-  attributes :id, :name, :sequence, :bpm
-  has_one :user
+  attributes :id, :name, :sequence, :bpm, :kit
 end

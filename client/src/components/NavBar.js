@@ -22,6 +22,9 @@ function NavBar({ user, handleLogout }) {
       <NavLink to="/">
         <button className="button">Home</button>
       </NavLink>
+      <NavLink to="/account">
+        <button className="button">Account</button>
+      </NavLink>
     </div>
   );
 }
