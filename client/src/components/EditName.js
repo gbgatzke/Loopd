@@ -28,16 +28,38 @@ function EditName({ currentUser, updateUser }) {
   };
 
   return (
-    <div>
+    <div class="mx-auto max-w-xl">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name: </label>
-        <input name="name" value={editForm.name} onChange={handleChange} />
-        <label htmlFor="username">Username: </label>
-        <input
-          name="username"
-          value={editForm.username}
-          onChange={handleChange}
-        />
+        <div>
+          <label
+            htmlFor="name"
+            class="mb-1 block text-sm font-medium text-gray-700"
+          >
+            Name:{" "}
+          </label>
+          <input
+            name="name"
+            value={editForm.name}
+            onChange={handleChange}
+            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="username"
+            class="mb-1 block text-sm font-medium text-gray-700"
+          >
+            Username:{" "}
+          </label>
+          <input
+            name="username"
+            value={editForm.username}
+            onChange={handleChange}
+            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+          />
+        </div>
+
         <button type="submit">Save changes!</button>
       </form>
       {errors
