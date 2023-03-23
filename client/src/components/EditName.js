@@ -28,12 +28,14 @@ function EditName({ currentUser, updateUser }) {
   };
 
   return (
-    <div class="mx-auto max-w-xl">
+    <div 
+    class="mx-auto max-w-xl"
+    >
       <form onSubmit={handleSubmit}>
         <div>
           <label
             htmlFor="name"
-            class="mb-1 block text-sm font-medium text-gray-700"
+            class="mb-1 block text-sm font-medium"
           >
             Name:{" "}
           </label>
@@ -41,14 +43,14 @@ function EditName({ currentUser, updateUser }) {
             name="name"
             value={editForm.name}
             onChange={handleChange}
-            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+            class="m-auto block w-200 rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
           />
         </div>
 
         <div>
           <label
             htmlFor="username"
-            class="mb-1 block text-sm font-medium text-gray-700"
+            class="mb-1 block text-sm font-medium"
           >
             Username:{" "}
           </label>
@@ -56,11 +58,11 @@ function EditName({ currentUser, updateUser }) {
             name="username"
             value={editForm.username}
             onChange={handleChange}
-            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500"
+            class="m-auto block w-200 rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
           />
         </div>
 
-        <button type="submit">Save changes!</button>
+        <button className="button" type="submit">Save changes!</button>
       </form>
       {errors
         ? errors.errors.map((err) => <p className="error">{err}</p>)

@@ -111,7 +111,7 @@ function Sequencer({
 
   return (
     <div className="sequencer-window">
-      <h1>Loopd!</h1>
+      <h1 class="text-6xl font-semibold m-5">Loopd!</h1>
       <Toolbar
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
@@ -130,7 +130,19 @@ function Sequencer({
         setCurrentKit={setCurrentKit}
         currentKit={currentKit}
       />
-      <Grid sequence={sequence} toggleStep={toggleStep}></Grid>
+      <div className="grid-window">
+        <div class="flex items-stretch">
+          <div class="ml-auto grid grid-cols-1 content-around">
+            <p class="ml-auto">Open hat </p>
+            <p class="ml-auto">Closed hat </p>
+            <p class="ml-auto">Snare </p>
+            <p class="ml-auto">Kick </p>
+          </div>
+          <div class="mr-auto">
+            <Grid sequence={sequence} toggleStep={toggleStep}></Grid>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

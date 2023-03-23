@@ -38,27 +38,38 @@ function Login({ setCurrentUser }) {
   };
 
   return (
-    <div>
+    <div >
       <h1>Login</h1>
-      <form onSubmit={login}>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          placeholder="username"
-        />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="password"
-        />
-        <button type="submit">Login</button>
-      </form>
+      <div 
+      class="flex justify-center"
+      >
+        <form onSubmit={login}>
+          <div>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="username"
+              class="block w-50 rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 m-5"
+            />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="password"
+              class="w-50 rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50  mt-2"
+            />
+          </div>
+          <button className="button" type="submit">
+            Login
+          </button>
+        </form>
+      </div>
+
       {errors
         ? errors.errors.map((err) => <p className="error">{err}</p>)
         : null}

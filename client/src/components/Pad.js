@@ -50,22 +50,24 @@ function Pad() {
 
   return (
     <div className="pad">
-      <button className="pad-button" onClick={() => triggerSample(3)}>
-        Kick
-      </button>
-      <button className="pad-button" onClick={() => triggerSample(2)}>
-        Snare
-      </button>
-      <button className="pad-button" onClick={() => triggerSample(1)}>
-        ClosedHat
-      </button>
-      <button className="pad-button" onClick={() => triggerSample(0)}>
-        ClosedHat
-      </button>
-      {/* <KeyTrigger /> */}
+      <div class='mb-5'>
+        <button className="pad-button" onClick={() => triggerSample(3)}>
+          Kick
+        </button>
+        <button className="pad-button" onClick={() => triggerSample(2)}>
+          Snare
+        </button>
+        <button className="pad-button" onClick={() => triggerSample(1)}>
+          ClosedHat
+        </button>
+        <button className="pad-button" onClick={() => triggerSample(0)}>
+          ClosedHat
+        </button>
+      </div>
+
       <div className="kit-div">
-        <label>Kit: </label>
-        <select onChange={(e) => setCurrentKit(e.target.value)}>
+        <label class="mb-1 block text-sm font-medium">Kit: </label>
+        <select onChange={(e) => setCurrentKit(e.target.value)} class="block rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50">
           <option value="soundMap1">808</option>
           <option value="soundMap2">FR6</option>
         </select>
