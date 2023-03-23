@@ -5,13 +5,13 @@ function Home({ user }) {
   if (!user) {
     return (
       <div>
-        <h1>Please login!</h1>
+        <h1 class="text-6xl font-semibold m-5">Please login!</h1>
       </div>
     );
   }
   return (
     <div>
-      <h1>Welcome, {user.name}!</h1>
+      <h1 class="text-6xl font-semibold m-5">Welcome, {user.name}!</h1>
       <Link to="/pad">
         <button className="button">Make sounds!</button>
       </Link>

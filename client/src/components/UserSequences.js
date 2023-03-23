@@ -6,7 +6,7 @@ function UserSequences({
   setBpm,
   deleteSequence,
   initialState,
-  setCurrentKit
+  setCurrentKit,
 }) {
   const [currentOption, setCurrentOption] = useState(false);
   const [currentSequence, setCurrentSequence] = useState(null);
@@ -20,29 +20,35 @@ function UserSequences({
     if (e.target.value === "default") {
       setSequence(initialState);
       setBpm(120);
-      setCurrentOption(false)
-      setCurrentKit('soundMap1');
+      setCurrentOption(false);
+      setCurrentKit("soundMap1");
     } else {
       const selected = userSeqs.filter((seq) => seq.name === e.target.value);
-      console.log(selected)
+      console.log(selected);
       setCurrentSequence(selected);
       setSequence(JSON.parse(selected[0].sequence));
       setBpm(selected[0].bpm);
-      setCurrentKit(selected[0].kit)
-      setCurrentOption(true)
+      setCurrentKit(selected[0].kit);
+      setCurrentOption(true);
     }
   };
 
   const handleClick = () => {
     deleteSequence(currentSequence[0].id);
     setSequence(initialState);
-    setCurrentOption(false)
+    setCurrentOption(false);
   };
 
   return (
-    <div className='userseq-div'>
-      <label htmlFor="user-seqs">My sequences: </label>
-      <select name="user-seqs" onChange={handleChange}>
+    <div className="userseq-div">
+      <label htmlFor="user-seqs" class="mb-1 block text-sm font-medium">
+        My sequences:{" "}
+      </label>
+      <select
+        name="user-seqs"
+        onChange={handleChange}
+        class="block w-50 rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
+      >
         <option value="default">Default</option>
         {seqs}
       </select>

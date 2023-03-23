@@ -28,17 +28,41 @@ function EditName({ currentUser, updateUser }) {
   };
 
   return (
-    <div>
+    <div 
+    class="mx-auto max-w-xl"
+    >
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name: </label>
-        <input name="name" value={editForm.name} onChange={handleChange} />
-        <label htmlFor="username">Username: </label>
-        <input
-          name="username"
-          value={editForm.username}
-          onChange={handleChange}
-        />
-        <button type="submit">Save changes!</button>
+        <div>
+          <label
+            htmlFor="name"
+            class="mb-1 block text-sm font-medium"
+          >
+            Name:{" "}
+          </label>
+          <input
+            name="name"
+            value={editForm.name}
+            onChange={handleChange}
+            class="m-auto block w-200 rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="username"
+            class="mb-1 block text-sm font-medium"
+          >
+            Username:{" "}
+          </label>
+          <input
+            name="username"
+            value={editForm.username}
+            onChange={handleChange}
+            class="m-auto block w-200 rounded-md border-gray-300 shadow-sm focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
+          />
+        </div>
+
+        <button className="button" type="submit">Save changes!</button>
       </form>
       {errors
         ? errors.errors.map((err) => <p className="error">{err}</p>)

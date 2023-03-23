@@ -75,23 +75,6 @@ function Toolbar({
   return (
     <div className="toolbar">
       <div className="toolbar-top">
-        <PlayButton isPlaying={isPlaying} onClick={handleClick} />
-        <BPM bpm={bpm} setBpm={setBpm} />
-        <span className="save-button">
-          <button className="button" onClick={handleSave}>
-            {saveModeOn ? "Save it!" : "Save this sequence?"}
-          </button>
-          {saveModeOn ? (
-            <input
-              onChange={(e) => setSequenceName(e.target.value)}
-              type="text"
-              placeholder="Name your sequence"
-            ></input>
-          ) : null}
-        </span>
-      </div>
-
-      <div className="toolbar-bottom">
         <Presets
           presets={presets}
           setSequence={setSequence}
@@ -110,6 +93,23 @@ function Toolbar({
             setCurrentKit={setCurrentKit}
           />
         ) : null}
+        <span className="save-button">
+          <button className="button" onClick={handleSave}>
+            {saveModeOn ? "Save it!" : "Save this sequence?"}
+          </button>
+          {saveModeOn ? (
+            <input
+              onChange={(e) => setSequenceName(e.target.value)}
+              type="text"
+              placeholder="Name your sequence"
+              class="block w-50 rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
+            ></input>
+          ) : null}
+        </span>
+      </div>
+      <div className="toolbar-bottom">
+        <PlayButton isPlaying={isPlaying} onClick={handleClick} />
+        <BPM bpm={bpm} setBpm={setBpm} />
         <SelectKit setCurrentKit={setCurrentKit} />
       </div>
     </div>

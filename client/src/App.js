@@ -53,7 +53,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className='app'>
       <div className="bar">
         <NavBar user={currentUser} handleLogout={handleLogout} />
       </div>
