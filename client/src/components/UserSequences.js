@@ -41,13 +41,13 @@ function UserSequences({
 
   return (
     <div className="userseq-div">
-      <label htmlFor="user-seqs" class="mb-1 block text-sm font-medium">
+      <label htmlFor="user-seqs" class="ml-auto mr-auto mb-1 block text-sm font-medium">
         My sequences:{" "}
       </label>
       <select
         name="user-seqs"
         onChange={handleChange}
-        class="block w-50 rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
+        class="block mr-auto ml-auto w-50 rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
       >
         <option value="default">Default</option>
         {seqs}

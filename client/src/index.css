@@ -26,6 +26,8 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 .button {
   border: none;
   padding: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
   margin: 1rem;
   background-color: #00c889;
   color: #ce000e;
@@ -68,7 +70,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 }
 
 .pad-button:active {
-  background-color: #11fffd; 
+  background-color: #11fffd;
 }
 
 .sequence-grid {
@@ -176,6 +178,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 .userseq-div {
   display: inline-block;
   margin: auto;
+  align-items: center;
 }
 
 .kit-div {
