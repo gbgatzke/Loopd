@@ -1,7 +1,16 @@
 import { NavLink } from "react-router-dom";
+import useUserStore from "../stores";
 
-function NavBar({ user, handleLogout }) {
-  if (!user) {
+function NavBar({}) {
+  const [currentUser, updateUser, logoutUser] = useUserStore((state) => [state.zuUser, state.updateUser, state.logoutUser]);
+
+  const handleLogout = () => {
+    console.log("working")
+    logoutUser();
+    updateUser(null);
+  }
+
+  if (!currentUser) {
     return (
       <div>
         <NavLink to="/login">
@@ -16,7 +25,10 @@ function NavBar({ user, handleLogout }) {
 
   return (
     <div>
-      <button className="nav-button" onClick={handleLogout}>
+      <button 
+        className="nav-button"
+        onClick={() => handleLogout}
+      >
         Logout
       </button>
       <NavLink to="/">

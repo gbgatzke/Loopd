@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function Login({ setCurrentUser }) {
+import useUserStore from "../stores";
+
+function Login() {
   const navigate = useNavigate();
+  const  updateUser = useUserStore((state) => state.updateUser)
 
   const [formData, setFormData] = useState({
     username: "",
@@ -25,7 +28,7 @@ function Login({ setCurrentUser }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => {
-          setCurrentUser(user);
+          updateUser(user);
           navigate("/");
         });
       } else {
