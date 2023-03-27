@@ -4,9 +4,9 @@
 
 :root {
   text-align: center;
-  background-color: #02323A;
-  color: #D9B29C;
-  /* background-image: url("https://wallpaper.dog/large/979139.jpg"); */
+  /* background-color: #02323A; */
+  color: #11fffd; 
+  background-image: url("https://wallpaper.dog/large/979139.jpg");
   
 }
 
@@ -19,16 +19,18 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 .bar {
   text-align: center;
   margin: 1rem;
-  background-color: #012025;
+  background-color: #111514;
   border-radius: 10px;
 }
 
 .button {
   border: none;
   padding: 0.5rem;
+  margin-left: auto;
+  margin-right: auto;
   margin: 1rem;
-  background-color: #A66249;
-  color: #D9B29C;
+  background-color: #00c889;
+  color: #ce000e;
   border-radius: 4px;
 }
 .nav-button {
@@ -37,8 +39,8 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   border: none;
   padding: 0.5rem;
   margin: 1rem;
-  background-color: #A66249;
-  color: #D9B29C;
+  background-color: #00c889;
+  color: #ce000e;
   border-radius: 4px;
 }
 
@@ -63,12 +65,12 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   padding: 1em;
   text-align: center;
   margin: 0.5rem;
-  background-color: #A66249;
-  color: #D9B29C;
+  background-color: #00c889;
+  color: #ce000e;
 }
 
 .pad-button:active {
-  background-color: #7F7601;
+  background-color: #11fffd;
 }
 
 .sequence-grid {
@@ -79,7 +81,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 }
 
 .grid-window {
-  background-color: #012025;
+  background-color: #111514;
   padding-top: 3rem;
   padding-bottom: 3rem;
   margin-top: 1rem;
@@ -87,7 +89,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 }
 
 .cell {
-  background-color:  #D9B29C;
+  background-color: #00c889;
   height: 25px;
   width: auto;
   margin: 5px;
@@ -95,7 +97,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 }
 
 .cell-time {
-  background-color: #A66249;
+  background-color: #11fffd; 
   height: 25px;
   width: auto;
   margin: 5px;
@@ -103,7 +105,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 }
 
 .cell-active {
-  background-color: #7F7601;
+  background-color: #f800f4;
   height: 25px;
   width: auto;
   margin: 5px;
@@ -143,8 +145,8 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin: 1rem;
-  background-color: #A66249;
-  color: #D9B29C;
+  background-color: #00c889;
+  color: #ce000e;
   border-radius: 4px;
 }
 
@@ -176,6 +178,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 .userseq-div {
   display: inline-block;
   margin: auto;
+  align-items: center;
 }
 
 .kit-div {
@@ -188,7 +191,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 
 .pad {
   align-items: center;
-  background-color: #012025;
+  background-color: #111514;
   padding-top: 3rem;
   padding-bottom: 3rem;
   margin-top: 1rem;

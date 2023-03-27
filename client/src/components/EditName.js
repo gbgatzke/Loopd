@@ -1,7 +1,12 @@
 import { useState } from "react";
+import useUserStore from "../stores/UserStore";
 
-function EditName({ currentUser, updateUser }) {
+function EditName() {
   const [errors, setErrors] = useState(null);
+  const [currentUser, updateUser] = useUserStore((state) => [
+    state.zuUser,
+    state.updateUser,
+  ]);
   const [editForm, setEditForm] = useState({
     name: currentUser.name,
     username: currentUser.username,
@@ -28,15 +33,10 @@ function EditName({ currentUser, updateUser }) {
   };
 
   return (
-    <div 
-    class="mx-auto max-w-xl"
-    >
+    <div class="mx-auto max-w-xl">
       <form onSubmit={handleSubmit}>
         <div>
-          <label
-            htmlFor="name"
-            class="mb-1 block text-sm font-medium"
-          >
+          <label htmlFor="name" class="mb-1 block text-sm font-medium">
             Name:{" "}
           </label>
           <input
@@ -48,10 +48,7 @@ function EditName({ currentUser, updateUser }) {
         </div>
 
         <div>
-          <label
-            htmlFor="username"
-            class="mb-1 block text-sm font-medium"
-          >
+          <label htmlFor="username" class="mb-1 block text-sm font-medium">
             Username:{" "}
           </label>
           <input
@@ -62,7 +59,9 @@ function EditName({ currentUser, updateUser }) {
           />
         </div>
 
-        <button className="button" type="submit">Save changes!</button>
+        <button className="button" type="submit">
+          Save changes!
+        </button>
       </form>
       {errors
         ? errors.errors.map((err) => <p className="error">{err}</p>)

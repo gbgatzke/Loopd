@@ -1,7 +1,6 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router";
-import { useNavigate } from "react-router";
 import Sequencer from "./components/Sequencer";
 import NavBar from "./components/NavBar";
 import Login from "./components/Login";
@@ -10,86 +9,29 @@ import Home from "./components/Home";
 import Pad from "./components/Pad";
 import Account from "./components/Account";
 
+import useUserStore from "./stores/UserStore.js";
+
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [userSeqs, setUserSeqs] = useState([]);
-  const [errors, setErrors] = useState(null);
-  const navigate = useNavigate();
+  // const [errors, setErrors] = useState(null);
+
+  const fetchUser = useUserStore((state) => state.fetchUser);
 
   useEffect(() => {
-    fetch("/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => {
-          setCurrentUser(user);
-          setUserSeqs(user.sequences);
-        });
-      } else {
-        r.json().then((errors) => setErrors(errors));
-      }
-    });
+    fetchUser();
   }, []);
 
-  const handleLogout = () => {
-    fetch("/logout", {
-      method: "DELETE",
-    });
-    setCurrentUser(null);
-    navigate("/");
-  };
-
-  const deleteSequence = (id) => {
-    console.log(id);
-    fetch(`/sequences/${id}`, {
-      method: "DELETE",
-    });
-    const updatedSeqs = userSeqs.filter((seq) => seq.id !== id);
-    setUserSeqs(updatedSeqs);
-    navigate("/sequencer");
-  };
-
-  const updateUser = (updatedUser) => {
-    setCurrentUser(updatedUser);
-    navigate("/");
-  };
-
   return (
-    <div className='app'>
+    <div className="app">
       <div className="bar">
-        <NavBar user={currentUser} handleLogout={handleLogout} />
+        <NavBar />
       </div>
       <Routes>
-        <Route
-          path="/sequencer"
-          element={
-            <Sequencer
-              currentUser={currentUser}
-              setCurrentUser={setCurrentUser}
-              userSeqs={userSeqs}
-              setUserSeqs={setUserSeqs}
-              deleteSequence={deleteSequence}
-            />
-          }
-        />
-        <Route
-          path="/account"
-          element={
-            <Account
-              currentUser={currentUser}
-              updateUser={updateUser}
-              handleLogout={handleLogout}
-            />
-          }
-        />
-        <Route
-          path="/signup"
-          element={<NewUser setCurrentUser={setCurrentUser} />}
-        />
-        <Route
-          path="/login"
-          element={<Login setCurrentUser={setCurrentUser} />}
-        />
+        <Route path="/sequencer" element={<Sequencer />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/signup" element={<NewUser />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/pad" element={<Pad />} />
-        <Route path="/" element={<Home user={currentUser} />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );
