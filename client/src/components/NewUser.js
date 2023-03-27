@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useUserStore from "../stores/UserStore";
 
 function NewUser({ setCurrentUser }) {
+  const updateUser = useUserStore((state) => state.updateUser)
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState(null);
@@ -26,7 +28,7 @@ function NewUser({ setCurrentUser }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((user) => {
-          setCurrentUser(user);
+          updateUser(user);
           navigate("/");
         });
       } else {

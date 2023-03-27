@@ -2,18 +2,25 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EditName from "./EditName";
 import EditPassword from "./EditPassword";
+import useUserStore from "../stores/UserStore";
 
-function Account({ currentUser, updateUser, handleLogout }) {
+function Account() {
   const [editName, setEditName] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
-
+  const [currentUser, updateUser, logoutUser] = useUserStore((state) => [
+    state.zuUser,
+    state.updateUser,
+    state.logoutUser,
+  ]);
   const navigate = useNavigate();
 
   const handleDelete = () => {
     fetch(`users/${currentUser.id}`, {
       method: "DELETE",
     });
-    handleLogout();
+    logoutUser();
+    updateUser(null);
+    navigate("/");
   };
 
   return (
@@ -24,16 +31,21 @@ function Account({ currentUser, updateUser, handleLogout }) {
           Edit Name/username
         </button>
       ) : (
-        <EditName currentUser={currentUser} updateUser={updateUser} />
+        <EditName />
       )}
       {!editPassword ? (
-        <button onClick={() => setEditPassword(!editPassword)} className="button">
+        <button
+          onClick={() => setEditPassword(!editPassword)}
+          className="button"
+        >
           Edit password
         </button>
       ) : (
-        <EditPassword currentUser={currentUser} updateUser={updateUser} />
+        <EditPassword />
       )}
-      <button onClick={() => handleDelete()} className="button">Delete account</button>
+      <button onClick={() => handleDelete()} className="button">
+        Delete account
+      </button>
       <button className="button" onClick={() => navigate("/")}>
         Close
       </button>

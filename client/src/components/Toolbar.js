@@ -1,28 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
+import useUserStore from "../stores/UserStore";
+import useSequenceStore from "../stores/SequenceStore";
+import useUserSeqStore from "../stores/UserSeqStore";
+import useBpmStore from "../stores/BpmStore";
+import useKitStore from "../stores/KitStore";
+
 import PlayButton from "./PlayButton";
 import BPM from "./BPM";
 import Presets from "./Presets";
 import UserSequences from "./UserSequences";
 import SelectKit from "./SelectKit";
 
-function Toolbar({
-  isPlaying,
-  setIsPlaying,
-  bpm,
-  setBpm,
-  setCurrentStep,
-  sequence,
-  presets,
-  setSequence,
-  initialState,
-  currentUser,
-  userSeqs,
-  setUserSeqs,
-  deleteSequence,
-  setCurrentKit,
-  currentKit,
-}) {
+function Toolbar({ isPlaying, setIsPlaying, setCurrentStep, initialState }) {
+  const sequence = useSequenceStore((state) => state.sequence);
+  const currentUser = useUserStore((state) => state.zuUser);
+  const [userSeqs, updateSeqs] = useUserSeqStore((state) => [
+    state.userSeqs,
+    state.updateSeqs,
+  ]);
+  const bpm = useBpmStore((state) => state.bpm);
+  const currentKit = useKitStore((state) => state.currentKit);
   const [saveModeOn, setSaveMode] = useState(false);
   const [sequenceName, setSequenceName] = useState("");
 
@@ -56,7 +54,7 @@ function Toolbar({
       }).then((r) => {
         if (r.ok) {
           r.json().then((sequence) => {
-            setUserSeqs([...userSeqs, sequence]);
+            updateSeqs([...userSeqs, sequence]);
             setSequenceName("");
           });
         } else {
@@ -68,31 +66,11 @@ function Toolbar({
     }
   };
 
-  if (!currentUser) {
-    <h1>Loading...</h1>;
-  }
-
   return (
     <div className="toolbar">
       <div className="toolbar-top">
-        <Presets
-          presets={presets}
-          setSequence={setSequence}
-          setBpm={setBpm}
-          initialState={initialState}
-          setCurrentKit={setCurrentKit}
-        />
-        {userSeqs ? (
-          <UserSequences
-            userSeqs={userSeqs}
-            setUserSeqs={setUserSeqs}
-            setSequence={setSequence}
-            setBpm={setBpm}
-            deleteSequence={deleteSequence}
-            initialState={initialState}
-            setCurrentKit={setCurrentKit}
-          />
-        ) : null}
+        <Presets initialState={initialState} />
+        {userSeqs ? <UserSequences initialState={initialState} /> : null}
         <span className="save-button">
           <button className="button" onClick={handleSave}>
             {saveModeOn ? "Save it!" : "Save this sequence?"}
@@ -109,8 +87,8 @@ function Toolbar({
       </div>
       <div className="toolbar-bottom">
         <PlayButton isPlaying={isPlaying} onClick={handleClick} />
-        <BPM bpm={bpm} setBpm={setBpm} />
-        <SelectKit setCurrentKit={setCurrentKit} />
+        <BPM />
+        <SelectKit />
       </div>
     </div>
   );

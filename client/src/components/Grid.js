@@ -1,6 +1,9 @@
 import Cell from "./Cell";
+import useSequenceStore from "../stores/SequenceStore";
 
-function Grid({ sequence, toggleStep }) {
+function Grid({ toggleStep }) {
+
+  const sequence = useSequenceStore((state) => state.sequence)
   const cells = sequence.map((row, i) =>
     row.map((time, j) => (
       <Cell

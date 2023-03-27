@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import useUserStore from "../stores";
+import useUserStore from "../stores/UserStore";
 
 function Login() {
   const navigate = useNavigate();
-  const  updateUser = useUserStore((state) => state.updateUser)
+  const updateUser = useUserStore((state) => state.updateUser);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -34,18 +34,15 @@ function Login() {
       } else {
         r.json().then((err) => {
           setErrors(err);
-          console.log(errors.errors);
         });
       }
     });
   };
 
   return (
-    <div >
+    <div>
       <h1>Login</h1>
-      <div 
-      class="flex justify-center"
-      >
+      <div class="flex justify-center">
         <form onSubmit={login}>
           <div>
             <input
