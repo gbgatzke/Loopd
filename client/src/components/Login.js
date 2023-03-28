@@ -42,7 +42,7 @@ function Login() {
   return (
     <div>
       <h1>Login</h1>
-      <div class="flex justify-center">
+      <div class="flex justify-center text-black">
         <form onSubmit={login}>
           <div>
             <input

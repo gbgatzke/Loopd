@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useUserStore from "../stores/UserStore";
 
 function EditPassword() {
@@ -8,9 +9,10 @@ function EditPassword() {
     password_confirmation: "",
   });
   const [currentUser, updateUser] = useUserStore((state) => [
-    state.currentUser,
+    state.zuUser,
     state.updateUser,
   ]);
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditForm({ ...editForm, [name]: value });
@@ -29,9 +31,10 @@ function EditPassword() {
         r.json().then((err) => setErrors(err));
       }
     });
+    navigate("/");
   };
   return (
-    <div>
+    <div class="mx-auto max-w-xl text-black">
       <form onSubmit={handleSubmit}>
         <label htmlFor="password" class="mb-1 block text-sm font-medium">
           Password:{" "}

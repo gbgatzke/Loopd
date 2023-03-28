@@ -61,7 +61,7 @@ function Pad() {
           ClosedHat
         </button>
         <button className="pad-button" onClick={() => triggerSample(0)}>
-          ClosedHat
+          OpenHat
         </button>
       </div>
 

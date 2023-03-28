@@ -15,6 +15,7 @@ function Sequencer() {
   ]);
   const [bpm, updateBpm] = useBpmStore((state) => [state.bpm, state.updateBpm]);
   const currentKit = useKitStore((state) => state.currentKit);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -88,7 +89,7 @@ function Sequencer() {
 
   return (
     <div className="sequencer-window">
-      <h1 class="text-6xl font-semibold m-5">Loopd!</h1>
+      <h1 class="text-6xl font-semibold m-5 mb-16">Loopd!</h1>
       <Toolbar
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}

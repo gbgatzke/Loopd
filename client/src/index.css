@@ -5,9 +5,9 @@
 :root {
   text-align: center;
   /* background-color: #02323A; */
-  color: #11fffd; 
+  color: white;
   background-image: url("https://wallpaper.dog/large/979139.jpg");
-  
+  font-family: 'Monoton', cursive;
 }
 
 /* .app {
@@ -19,8 +19,10 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 .bar {
   text-align: center;
   margin: 1rem;
+  margin-bottom: 5rem;
   background-color: #111514;
   border-radius: 10px;
+  font-family: 'Phudu', cursive;
 }
 
 .button {
@@ -29,9 +31,10 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   margin-left: auto;
   margin-right: auto;
   margin: 1rem;
-  background-color: #00c889;
+  background-color: #11fffd; 
   color: #ce000e;
   border-radius: 4px;
+  font-family: 'Phudu', cursive;
 }
 .nav-button {
   width: 7rem;
@@ -39,7 +42,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   border: none;
   padding: 0.5rem;
   margin: 1rem;
-  background-color: #00c889;
+  background-color: #11fffd; 
   color: #ce000e;
   border-radius: 4px;
 }
@@ -49,6 +52,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   margin: auto;
   display: block;
   width: 70%;
+  
 }
 
 .pad {
@@ -65,7 +69,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   padding: 1em;
   text-align: center;
   margin: 0.5rem;
-  background-color: #00c889;
+  background-color: #11fffd; 
   color: #ce000e;
 }
 
@@ -78,6 +82,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(4, 1fr);
   width: 50vw;
+  
 }
 
 .grid-window {
@@ -86,10 +91,11 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   padding-bottom: 3rem;
   margin-top: 1rem;
   border-radius: 10px;
+  font-family: 'Phudu', cursive;
 }
 
 .cell {
-  background-color: #00c889;
+  background-color: #11fffd;  
   height: 25px;
   width: auto;
   margin: 5px;
@@ -97,7 +103,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 }
 
 .cell-time {
-  background-color: #11fffd; 
+  background-color: #00c889;
   height: 25px;
   width: auto;
   margin: 5px;
@@ -122,10 +128,12 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
 
 .error {
   color: red;
+  font-family: 'Phudu', cursive;
 }
 
 .toolbar {
   display: inline-block;
+  font-family: 'Phudu', cursive;
 }
 
 .toolbar-top {
@@ -145,7 +153,7 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin: 1rem;
-  background-color: #00c889;
+  background-color: #11fffd;  
   color: #ce000e;
   border-radius: 4px;
 }
@@ -197,4 +205,5 @@ background-image: url("https://wallpaper.dog/large/979139.jpg");
   margin-top: 1rem;
   border-radius: 10px;
   width: 50%;
+  font-family: 'Phudu', cursive;
 }

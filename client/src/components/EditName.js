@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useUserStore from "../stores/UserStore";
 
 function EditName() {
@@ -11,6 +12,8 @@ function EditName() {
     name: currentUser.name,
     username: currentUser.username,
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,10 +33,11 @@ function EditName() {
         r.json().then((err) => setErrors(err));
       }
     });
+    navigate("/");
   };
 
   return (
-    <div class="mx-auto max-w-xl">
+    <div class="mx-auto max-w-xl text-black">
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name" class="mb-1 block text-sm font-medium">

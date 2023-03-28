@@ -45,7 +45,7 @@ function Presets({ initialState }) {
       <select
         name="presets"
         onChange={handlePreset}
-        class="block w-50 rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
+        class="block w-50 rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 text-black"
       >
         <option value="default">Default</option>
         {list}

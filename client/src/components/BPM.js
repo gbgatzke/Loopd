@@ -15,7 +15,7 @@ function BPM() {
         onChange={handleChange}
         type="number"
         value={bpm}
-        class="block w-12 rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50"
+        class="block w-12 rounded-md border-gray-300 focus:border-primary-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 text-black"
       ></input>
     </div>
   );
